@@ -11,25 +11,18 @@
 
 <body>
 <div id="app">
-    <maj texte="Texte à mettre en majuscule"></maj>
+    <test></test>
+    <test>Texte de remplacement</test>
 </div>
 
 <script>
     const app = Vue.createApp({
     });
-    // Composant global :
-    app.component('maj', {
-        template: '<div>{{ enMaj }}</div>',
-        props: ['texte'],
-        data() {
-            return {
-                enMaj: this.texte.toUpperCase()
-            }
-        }
-    })
+    app.component('test', {
+        template: '<div><slot>Texte par défaut</slot></div>'
+    });
     app.mount('#app');
 </script>
 </body>
 
 </html>
-

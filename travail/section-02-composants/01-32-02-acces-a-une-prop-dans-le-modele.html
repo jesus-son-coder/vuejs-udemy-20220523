@@ -11,22 +11,26 @@
 
 <body>
 <div id="app">
-    <maj texte="Texte à mettre en majuscule"></maj>
+    <rnd-loc max="10"></rnd-loc>
+    <rnd-loc max="100"></rnd-loc>
+    <rnd-loc max="1000"></rnd-loc>
 </div>
 
 <script>
-    const app = Vue.createApp({
-    });
-    // Composant global :
-    app.component('maj', {
-        template: '<div>{{ enMaj }}</div>',
-        props: ['texte'],
+    const RndLocal = {
+        props: ['max'],
         data() {
             return {
-                enMaj: this.texte.toUpperCase()
+                nombre: Math.floor(Math.random()*this.max + 1)
             }
+        },
+        template: '<div>{{ nombre }}</div>'
+    }
+    const app = Vue.createApp({
+        components: {
+            'rnd-loc': RndLocal
         }
-    })
+    });
     app.mount('#app');
 </script>
 </body>

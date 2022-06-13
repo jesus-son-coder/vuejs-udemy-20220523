@@ -11,25 +11,27 @@
 
 <body>
 <div id="app">
-    <maj texte="Texte à mettre en majuscule"></maj>
+    {{ compteur }}
+    <button @click="compteur++;">Incrémenter</button>
 </div>
 
 <script>
     const app = Vue.createApp({
-    });
-    // Composant global :
-    app.component('maj', {
-        template: '<div>{{ enMaj }}</div>',
-        props: ['texte'],
         data() {
             return {
-                enMaj: this.texte.toUpperCase()
+                compteur: 0
+            }
+        },
+        watch: {
+            compteur(valeur) {
+                if(valeur === 10) {
+                    this.compteur = 0;
+                }
             }
         }
-    })
+    });
     app.mount('#app');
 </script>
 </body>
 
 </html>
-
